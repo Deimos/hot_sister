@@ -9,6 +9,7 @@
 
 import re
 import praw
+import HTMLParser
 
 # defines the main and sister subreddits, and how many posts to list in the sidebar
 MAIN_SUBREDDIT = 'gamestest'
@@ -38,6 +39,7 @@ for (i, post) in enumerate(sister_subreddit.get_hot(limit=POSTS_TO_LIST)):
 
 # update the sidebar
 current_sidebar = main_subreddit.get_settings()['description']
+current_sidebar = HTMLParser.HTMLParser().unescape(current_sidebar)
 replace_pattern = re.compile('%s.*?%s' % (re.escape(START_DELIM), re.escape(END_DELIM)), re.IGNORECASE|re.DOTALL|re.UNICODE)
 new_sidebar = re.sub(replace_pattern,
                     '%s\\n\\n%s\\n%s' % (START_DELIM, list_text, END_DELIM),
