@@ -1,0 +1,6 @@
+[reddit]
+user_agent = %(username)s - Sister-subreddit Sidebar Updater
+username = username
+password = password
+start_delimiter = [](/hot-sister-start)
+end_delimiter = [](/hot-sister-end)
